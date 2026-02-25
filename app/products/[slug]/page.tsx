@@ -2,6 +2,7 @@
 import { getProductBySlug, getReviewsByProductId } from '@/lib/cosmic'
 import ReviewCard from '@/components/ReviewCard'
 import StarRating from '@/components/StarRating'
+import BuyButton from '@/components/BuyButton'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
@@ -36,7 +37,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const averageRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + parseInt(r.metadata.rating?.value || '5', 10), 0) /
-        reviews.length
+          reviews.length
       : 0
 
   const imageUrl = product.metadata.product_image?.imgix_url
@@ -123,6 +124,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <span className="text-sm text-gray-400">SKU: {product.metadata.sku}</span>
             )}
           </div>
+
+          {/* Changed: Added BuyButton component */}
+          <BuyButton
+            productName={product.metadata.name}
+            price={product.metadata.price}
+            inStock={inStock}
+          />
 
           {product.metadata.description && (
             <div className="mt-8 prose prose-gray prose-sm max-w-none">
