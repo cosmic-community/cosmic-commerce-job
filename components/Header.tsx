@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import MobileNav from '@/components/MobileNav'
 
 export default function Header() {
   return (
@@ -45,24 +46,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
-}
-
-function MobileNav() {
-  return (
-    <div className="flex items-center gap-4">
-      <Link
-        href="/products"
-        className="text-xs font-medium text-gray-600 hover:text-gray-900"
-      >
-        Shop
-      </Link>
-      <Link
-        href="/blog"
-        className="text-xs font-medium text-gray-600 hover:text-gray-900"
-      >
-        Blog
-      </Link>
-    </div>
   )
 }
